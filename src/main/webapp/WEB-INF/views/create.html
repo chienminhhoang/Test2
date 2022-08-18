@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <title>Title</title>
+</head>
+<body>
+<div class="container">
+    <h1>Create new food</h1>
+    <h2 th:if="${message} != null" th:text="${message}"></h2>
+    <form method="post" th:object="${cuisines}">
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <td><label><input type="text" th:field="*{name}"></label></td>
+            </tr>
+            <tr>
+                <th>price</th>
+                <td><label><input type="text" th:field="*{price}"></label></td>
+            </tr>
+            <tr>
+                <th>Classify</th>
+                <td><label><input type="text" th:field="*{classify}"></label></td>
+            </tr>
+            <tr>
+                <th>category</th>
+                <td>
+                    <label>
+                        <input type="radio" value="vegetarian" name="category" th:field="*{category}">vegetarian
+                    </label>
+                    <label>
+                        <input type="radio" value="Meat" name="category" th:field="*{category}">Meat food
+                    </label>
+                    <label>
+                        <input type="radio" value="drink" name="category" th:field="*{category}">Drinks
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <th>Amount</th>
+                <td>
+                            <label>
+                            <input aria-label="quantity" class="input-qty" max="100" min="0" name="amount" type="number" value="1">
+                            </label>
+                </td>
+            </tr>
+            <tr>
+                <th>Menu</th>
+                <td>
+                    <label>
+                        <select th:field="*{menu}">
+                            <option th:each="m : ${Menu}" th:value="${m.getId()}"
+                                    th:text="${m.getName()}"></option>
+                        </select>
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button class="btn btn-primary" type="submit"><span>Create</span></button>
+                </td>
+            </tr>
+        </table>
+    </form>
+    <button class="btn btn-primary"><a href="/cuisines1">Back to home</a></button>
+</div>
+</body>
+</html>
