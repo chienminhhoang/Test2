@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface CuisinesRepository extends JpaRepository<Cuisines, Long> {
-    List<Cuisines> findAllByNameContaining(String name);
+    List<Cuisines> findAll(String name);
     @Query(value = "select * from cuisines where name like :name", nativeQuery = true)
     List<Cuisines> findByName(@Param("name") String name);
     @Query(value ="select max(price) from cuisines where price =(select max(price) from cuisines) ", nativeQuery = true )
